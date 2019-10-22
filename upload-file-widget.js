@@ -1,6 +1,13 @@
 /*
     jquery required
-    <input type="file" name="upload" class="upload" data-ufw-file="file.pdf" data-ufw-path="/upload">
+    <input
+        type="file"
+        name="upload"
+        class="upload"
+        data-ufw-file="View"
+        data-ufw-path="/upload/abc.png"
+        data-ufw-download="check.php?id=1"
+    >
 
     upload_file_widget.init($class);
     e.g.: upload_file_widget.init($(".upload"));
@@ -9,7 +16,7 @@
     field: input attribute name
     path: file path
     name: fiel display name
-    e.g.: var element = upload_file_widget.generate("upload", "/upload", "file.pdf");
+    e.g.: var element = upload_file_widget.generate(field, path, file, className, width, download);
 
     status:
     "": no file
@@ -31,9 +38,10 @@ upload_file_widget = {
                 var field = $this.attr("name")
                 var path = $this.attr("data-ufw-path");
                 var file = $this.attr("data-ufw-file");
+                var download = $this.attr("data-ufw-download");
                 var width = $this.attr("data-ufw-width");
                 var className = $this.attr("class");
-                var element = self.generate(field, path, file, className, width);
+                var element = self.generate(field, path, file, className, width, download);
                 $(element).insertAfter($this);
                 $this.remove();
             });
@@ -69,7 +77,7 @@ upload_file_widget = {
         });
     },
 
-    generate: function(field, path, file, className, width){
+    generate: function(field, path, file, className, width, download){
         var html = "";
         var path = path || "";
         var width = width || "";
@@ -77,6 +85,7 @@ upload_file_widget = {
         var has_data = "";
         var className = className || "";
         var status = "";
+        var download = download || "";
         var orginal_file = path.split("/").pop();
         var orginal_file_element = "";
 
@@ -88,6 +97,10 @@ upload_file_widget = {
             has_data = "has-data";
             status = "static";
             orginal_file_element = `<input type="hidden" name="ufw_path_${field}" value="${orginal_file}" >`;
+        }
+
+        if (download) {
+            path = download;
         }
 
         if (width) {
