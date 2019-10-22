@@ -77,6 +77,8 @@ upload_file_widget = {
         var has_data = "";
         var className = className || "";
         var status = "";
+        var orginal_file = path.split("/").pop();
+        var orginal_file_element = "";
 
         if (this.status == "inactive"){
             this.init();
@@ -85,6 +87,7 @@ upload_file_widget = {
         if (path) {
             has_data = "has-data";
             status = "static";
+            orginal_file_element = `<input type="hidden" name="ufw_path_${field}" value="${orginal_file}" >`;
         }
 
         if (width) {
@@ -113,6 +116,7 @@ upload_file_widget = {
                     </span>
                 </div>
             </div>
+            ${orginal_file_element}
             <input type="hidden" name="status_${field}" value="${status}" class="ufw-status">
         </div>`;
 
