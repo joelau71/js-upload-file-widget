@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- need jquery -->
+    <!-- need bootstarp -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="upload-file-widget.css">
+    <script src="upload-file-widget.js"></script>
+    
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    
+    <input
+        type="file"
+        name="upload[]"
+        class="upload-file-widget"
+        data-ufw-title="view"
+        data-ufw-width="300"
+        data-ufw-path="sample.pdf"
+        data-ufw-download="download.php?id=1"
+    >
+    <!-- data-ufw-download for php download file -->
+    <div id="area">
+
+    </div>
+
+    <div id="add">Add</div>
+    <script>
+        $(function(){
+            $("#add").on("click", function(){
+                $('#area').append(`<input type="file" name="upload[]" class="upload-file-widget">`);
+                uploadFileWidget.update();
+            });
+        });
+    </script>
+  </body>
+</html>
