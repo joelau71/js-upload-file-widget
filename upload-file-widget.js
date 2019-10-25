@@ -86,7 +86,7 @@ $(function() {
             html = `<div class="upload-file-widget-wrapper ${has_data}" ${width}>
                 <label class="ufw-file-label">
                     ${element}
-                    <span class="btn btn-secondary">
+                    <span class="ufw-btn">
                         UPLOAD
                     </span>
                 </label>
@@ -97,10 +97,10 @@ $(function() {
                         </a>
                     </div>
                     <div class="right">
-                        <span class="btn btn-secondary ufw-upload-btn ufw-btn">
+                        <span class="ufw-upload-btn ufw-btn">
                             Upload
                         </span>
-                        <span class="btn btn-secondary ufw-remove-btn ufw-btn">
+                        <span class="ufw-remove-btn ufw-btn">
                             Remove
                         </span>
                     </div>
