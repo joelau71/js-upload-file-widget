@@ -2,6 +2,7 @@
 .upload-file-widget-wrapper{
     width:450px;
     min-height:30px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .upload-file-widget-wrapper .ufw-file-label{
@@ -17,6 +18,33 @@
     position:relative;
 }
 
+.upload-file-widget-wrapper .ufw-btn{
+    border-radius: 3px;
+    border: 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    min-width: 90px;
+    text-align: center;
+    vertical-align: top;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #d8a53f;
+    color: #FFFFFF;
+}
+
+.upload-file-widget-wrapper .ufw-btn:hover{
+    background-color: #999999;
+}
+
+.upload-file-widget-wrapper .ufw-ttl{
+    text-decoration: none;
+    color:#333333;
+}
+
+.upload-file-widget-wrapper .ufw-remove-btn{
+    margin-left: 10px;
+}
+
 .upload-file-widget-wrapper.has-data .ufw-file-label{
     display:none;
 }
@@ -29,9 +57,4 @@
 
 .upload-file-widget-wrapper.has-data .ufw-content .right{
     margin-left:auto;
-}
-
-.upload-file-widget-wrapper.has-data .ufw-content .ufw-btn{
-    margin-left:10px;
-    cursor: pointer;
 }
