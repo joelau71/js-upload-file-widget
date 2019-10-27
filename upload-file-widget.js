@@ -82,34 +82,34 @@ $(function() {
             }
 
             if (width) {
-                width = `style="width:${width}px;"`;
+                width = 'style="width:' + width + 'px"';
             }
             
-            html = `<div class="upload-file-widget-wrapper ${has_data}" ${width}>
-                <label class="ufw-file-label">
-                    ${element}
-                    <span class="ufw-btn">
-                        UPLOAD
-                    </span>
-                </label>
-                <div class="ufw-content">
-                    <div class="left">
-                        <a href="${link}" class="ufw-ttl" target="_blank">
-                            ${title}
-                        </a>
-                    </div>
-                    <div class="right">
-                        <span class="ufw-upload-btn ufw-btn">
-                            Upload
-                        </span>
-                        <span class="ufw-remove-btn ufw-btn">
-                            Remove
-                        </span>
-                    </div>
-                </div>
-                <input type="hidden" name="ufw_file_${field}" value="${file}" class="ufw-file">
-                <input type="hidden" name="ufw_status_${field}" value="${status}" class="ufw-status">
-            </div>`;
+            html = '<div class="upload-file-widget-wrapper '+ has_data + '" width>';
+            html += '<label class="ufw-file-label">';
+            html += element;
+            html += '<span class="ufw-btn">';
+            html += 'UPLOAD';
+            html += '</span>'
+            html += '</label>';
+            html += '<div class="ufw-content">';
+            html += '<div class="left">';
+            html += '<a href="' + link + '" class="ufw-ttl" target="_blank">';
+            html += title;
+            html += '</a>';
+            html += '</div>';
+            html += '<div class="right">';
+            html += '<span class="ufw-upload-btn ufw-btn">';
+            html += 'Upload';
+            html += '</span>';
+            html += '<span class="ufw-remove-btn ufw-btn">';
+            html += 'Remove';
+            html += '</span>';
+            html += '</div>';
+            html += '</div>';
+            html += '<input type="hidden" name="ufw_file_' + field + '" value="' + file + '" class="ufw-file">';
+            html += '<input type="hidden" name="ufw_status_' + field + '" value="' + status + '" class="ufw-status">';
+            html += '</div>';
 
             return html;
         }
