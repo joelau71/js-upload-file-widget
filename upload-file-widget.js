@@ -8,6 +8,7 @@ $(function() {
                 $wrapper.find(".ufw-status").val("remove");
                 $wrapper.find(".upload-file-widget").val("");
                 $wrapper.find(".ufw-file").val("");
+                $wrapper.find(".ufw-ttl").attr("href", "");
                 $wrapper.removeClass("has-data");
             });
 
