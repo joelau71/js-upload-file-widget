@@ -7,6 +7,7 @@ $(function() {
                 var $wrapper = $(this).closest(".upload-file-widget-wrapper");
                 $wrapper.find(".ufw-status").val("remove");
                 $wrapper.find(".upload-file-widget").val("");
+                $wrapper.find(".ufw-file").val("");
                 $wrapper.removeClass("has-data");
             });
 
@@ -17,6 +18,8 @@ $(function() {
                 var $ttl = $wrapper.find(".ufw-ttl");
                 var ttl = $this.attr("data-ufw-title");
                 var path = $this.val();
+
+                if (path == "") return false;
                 var file = path.split("\\").pop();
                 
                 $ttl.attr("href", src);
