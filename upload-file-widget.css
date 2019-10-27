@@ -6,7 +6,7 @@
 }
 
 .upload-file-widget-wrapper .ufw-file-label{
-    display:block;
+    display:inline-block;
 }
 
 .upload-file-widget-wrapper .ufw-file-label input{
