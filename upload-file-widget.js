@@ -22,6 +22,7 @@ $(function() {
 
                 if (path == "") return false;
                 var file = path.split("\\").pop();
+                file = file.replace(/ /g,"_");
                 
                 $ttl.attr("href", src);
                 if (ttl === undefined) {
