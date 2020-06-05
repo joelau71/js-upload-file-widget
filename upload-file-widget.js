@@ -1,9 +1,9 @@
-$(function() {
+$(function () {
     uploadFileWidget = {
-        init: function(){
+        init: function () {
             this.update();
             this.$body = $("body");
-            this.$body.delegate(".ufw-remove-btn", "click", function(){
+            this.$body.delegate(".ufw-remove-btn", "click", function () {
                 var $wrapper = $(this).closest(".upload-file-widget-wrapper");
                 $wrapper.find(".ufw-status").val("remove");
                 $wrapper.find(".upload-file-widget").val("");
@@ -12,7 +12,7 @@ $(function() {
                 $wrapper.removeClass("has-data");
             });
 
-            this.$body.delegate(".upload-file-widget", "change", function(){
+            this.$body.delegate(".upload-file-widget", "change", function () {
                 var $this = $(this);
                 var src = URL.createObjectURL($this[0].files[0]);
                 var $wrapper = $this.closest(".upload-file-widget-wrapper");
@@ -22,8 +22,8 @@ $(function() {
 
                 if (path == "") return false;
                 var file = path.split("\\").pop();
-                file = file.replace(/ /g,"_");
-                
+                file = file.replace(/ /g, "_");
+
                 $ttl.attr("href", src);
                 if (ttl === undefined) {
                     $wrapper.find(".ufw-ttl").text(file);
@@ -34,16 +34,16 @@ $(function() {
                 $wrapper.addClass("has-data");
             });
 
-            this.$body.delegate(".ufw-upload-btn", "click", function(){
+            this.$body.delegate(".ufw-upload-btn", "click", function () {
                 var $wrapper = $(this).closest(".upload-file-widget-wrapper");
                 var $upload = $wrapper.find(".upload-file-widget");
                 $upload.trigger("click");
             });
         },
 
-        update: function() {
+        update: function () {
             var self = this;
-            $(".upload-file-widget").each(function(){
+            $(".upload-file-widget").each(function () {
                 var $this = $(this);
                 var element = "";
                 if ($this.hasClass("is-upload-file-widget")) return true;
@@ -53,23 +53,25 @@ $(function() {
             });
         },
 
-        generate: function($element){
+        generate: function ($element) {
 
             var html = "";
             var has_data = "";
             var status = "";
             var link = "";
-            var file ="";
+            var file = "";
             var element = "";
             var field = $element.attr("name");
             var path = $element.attr("data-ufw-path") || "";
             var download = $element.attr("data-ufw-download") || "";
             var width = $element.attr("data-ufw-width") || "";
             var title = $element.attr("data-ufw-title") || "";
+            var is_remove = $element.attr('data-ufw-remove') || true;
+
 
             $element.addClass("is-upload-file-widget")
 
-            var obj = $('<div>').append($element.clone()).html(); 
+            var obj = $('<div>').append($element.clone()).html();
             var element = new String(obj);
 
             if (path) {
@@ -89,8 +91,8 @@ $(function() {
             if (width) {
                 width = 'style="width:' + width + 'px"';
             }
-            
-            html = '<div class="upload-file-widget-wrapper '+ has_data + '" width>';
+
+            html = '<div class="upload-file-widget-wrapper ' + has_data + '" width>';
             html += '<label class="ufw-file-label">';
             html += element;
             html += '<span class="ufw-btn">';
@@ -107,9 +109,13 @@ $(function() {
             html += '<span class="ufw-upload-btn ufw-btn">';
             html += 'Upload';
             html += '</span>';
-            html += '<span class="ufw-remove-btn ufw-btn">';
-            html += 'Remove';
-            html += '</span>';
+
+            if (is_remove == true) {
+                html += '<span class="ufw-remove-btn ufw-btn">';
+                html += 'Remove';
+                html += '</span>';
+            }
+
             html += '</div>';
             html += '</div>';
             html += '<input type="hidden" name="ufw_file_' + field + '" value="' + file + '" class="ufw-file">';
