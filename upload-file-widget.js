@@ -54,7 +54,6 @@ $(function () {
         },
 
         generate: function ($element) {
-
             var html = "";
             var has_data = "";
             var status = "";
@@ -64,20 +63,19 @@ $(function () {
             var field = $element.attr("name");
             var path = $element.attr("data-ufw-path") || "";
             var download = $element.attr("data-ufw-download") || "";
-            var width = $element.attr("data-ufw-width") || "";
+            var width = $element.attr("data-ufw-max-width") || 400;
             var title = $element.attr("data-ufw-title") || "";
-            var is_remove = $element.attr('data-ufw-remove') || true;
+            var is_remove = $element.attr("data-ufw-remove") || true;
 
+            $element.addClass("is-upload-file-widget");
 
-            $element.addClass("is-upload-file-widget")
-
-            var obj = $('<div>').append($element.clone()).html();
+            var obj = $("<div>").append($element.clone()).html();
             var element = new String(obj);
 
             if (path) {
                 link = path;
                 file = path.split("/").pop();
-                has_data = "has-data";
+                has_data = " has-data";
                 status = "static";
                 if (title == "") {
                     title = file;
@@ -88,42 +86,48 @@ $(function () {
                 link = download;
             }
 
-            if (width) {
-                width = 'style="width:' + width + 'px"';
-            }
-
-            html = '<div class="upload-file-widget-wrapper ' + has_data + '" width>';
+            html = `<div class="upload-file-widget-wrapper${has_data}" style="max-width: ${width}px">`;
             html += '<label class="ufw-file-label">';
             html += element;
             html += '<span class="ufw-btn">';
-            html += 'UPLOAD';
-            html += '</span>'
-            html += '</label>';
+            html += "UPLOAD";
+            html += "</span>";
+            html += "</label>";
             html += '<div class="ufw-content">';
             html += '<div class="left">';
             html += '<a href="' + link + '" class="ufw-ttl" target="_blank">';
             html += title;
-            html += '</a>';
-            html += '</div>';
+            html += "</a>";
+            html += "</div>";
             html += '<div class="right">';
             html += '<span class="ufw-upload-btn ufw-btn">';
-            html += 'Upload';
-            html += '</span>';
+            html += "Upload";
+            html += "</span>";
 
             if (is_remove == true) {
                 html += '<span class="ufw-remove-btn ufw-btn">';
-                html += 'Remove';
-                html += '</span>';
+                html += "Remove";
+                html += "</span>";
             }
 
-            html += '</div>';
-            html += '</div>';
-            html += '<input type="hidden" name="ufw_file_' + field + '" value="' + file + '" class="ufw-file">';
-            html += '<input type="hidden" name="ufw_status_' + field + '" value="' + status + '" class="ufw-status">';
-            html += '</div>';
+            html += "</div>";
+            html += "</div>";
+            html +=
+                '<input type="hidden" name="ufw_file_' +
+                field +
+                '" value="' +
+                file +
+                '" class="ufw-file">';
+            html +=
+                '<input type="hidden" name="ufw_status_' +
+                field +
+                '" value="' +
+                status +
+                '" class="ufw-status">';
+            html += "</div>";
 
             return html;
-        }
-    }
+        },
+    };
     uploadFileWidget.init();
 });
