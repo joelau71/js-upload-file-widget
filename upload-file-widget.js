@@ -1,9 +1,9 @@
-$(function () {
+$(function() {
     uploadFileWidget = {
-        init: function () {
+        init: function() {
             this.update();
             this.$body = $("body");
-            this.$body.delegate(".ufw-remove-btn", "click", function () {
+            this.$body.on("click", ".ufw-remove-btn", function() {
                 var $wrapper = $(this).closest(".upload-file-widget-wrapper");
                 $wrapper.find(".ufw-status").val("remove");
                 $wrapper.find(".upload-file-widget").val("");
@@ -12,7 +12,7 @@ $(function () {
                 $wrapper.removeClass("has-data");
             });
 
-            this.$body.delegate(".upload-file-widget", "change", function () {
+            this.$body.on("change", ".upload-file-widget", function() {
                 var $this = $(this);
                 var src = URL.createObjectURL($this[0].files[0]);
                 var $wrapper = $this.closest(".upload-file-widget-wrapper");
@@ -34,68 +34,51 @@ $(function () {
                 $wrapper.addClass("has-data");
             });
 
-            this.$body.delegate(".ufw-upload-btn", "click", function () {
+            this.$body.on("click", ".ufw-upload-btn", function() {
                 var $wrapper = $(this).closest(".upload-file-widget-wrapper");
                 var $upload = $wrapper.find(".upload-file-widget");
                 $upload.trigger("click");
             });
         },
 
-        update: function () {
+        update: function() {
             var self = this;
-            $(".upload-file-widget").each(function () {
+            $(".upload-file-widget").each(function() {
                 var $this = $(this);
-                var element = "";
                 if ($this.hasClass("is-upload-file-widget")) return true;
-                element = self.generate($this);
-                $(element).insertAfter($this);
-                $this.remove();
+                self.wrapper($this);
             });
         },
 
-        generate: function ($element) {
-            var html = "";
-            var has_data = "";
-            var status = "";
-            var link = "";
+        wrapper: function($upload) {
+            var name = $upload.attr("name");
+            var path = $upload.attr("data-ufw-path") || "";
+            var title =
+                $upload.attr("data-ufw-title") || path.split("/").pop() || "";
+            var remove = $upload.attr("data-ufw-remove") || false;
+            var has_data = path ? " has-data" : "";
+            var group = $upload.attr("data-ufw-group") || "";
+
             var file = "";
-            var element = "";
-            var field = $element.attr("name");
-            var path = $element.attr("data-ufw-path") || "";
-            var download = $element.attr("data-ufw-download") || "";
-            var width = $element.attr("data-ufw-max-width") || 400;
-            var title = $element.attr("data-ufw-title") || "";
-            var is_remove = $element.attr("data-ufw-remove") || true;
-
-            $element.addClass("is-upload-file-widget");
-
-            var obj = $("<div>").append($element.clone()).html();
-            var element = new String(obj);
 
             if (path) {
-                link = path;
                 file = path.split("/").pop();
-                has_data = " has-data";
-                status = "static";
-                if (title == "") {
-                    title = file;
-                }
             }
 
-            if (download) {
-                link = download;
-            }
+            $upload.addClass("is-upload-file-widget");
+            $upload.wrap(`<label class="ufw-file-label"></label>`);
+            var $label = $upload.parent();
+            var text = `<span class="ufw-btn">UPLOAD</span>`;
+            $label.append(text);
 
-            html = `<div class="upload-file-widget-wrapper${has_data}" style="max-width: ${width}px">`;
-            html += '<label class="ufw-file-label">';
-            html += element;
-            html += '<span class="ufw-btn">';
-            html += "UPLOAD";
-            html += "</span>";
-            html += "</label>";
-            html += '<div class="ufw-content">';
+            $label.wrap(
+                `<div class="upload-file-widget-wrapper${has_data} ${group}"></div>`
+            );
+            var $wrapper = $label.parent();
+
+            var html = '<div class="ufw-content">';
             html += '<div class="left">';
-            html += '<a href="' + link + '" class="ufw-ttl" target="_blank">';
+            html += '<a href="' + path + '" class="ufw-ttl" target="_blank">';
             html += title;
             html += "</a>";
             html += "</div>";
@@ -104,7 +87,7 @@ $(function () {
             html += "Upload";
             html += "</span>";
 
-            if (is_remove == true) {
+            if (remove === "true") {
                 html += '<span class="ufw-remove-btn ufw-btn">';
                 html += "Remove";
                 html += "</span>";
@@ -114,20 +97,17 @@ $(function () {
             html += "</div>";
             html +=
                 '<input type="hidden" name="ufw_file_' +
-                field +
+                name +
                 '" value="' +
                 file +
                 '" class="ufw-file">';
             html +=
                 '<input type="hidden" name="ufw_status_' +
-                field +
-                '" value="' +
-                status +
-                '" class="ufw-status">';
-            html += "</div>";
+                name +
+                '" value="static" class="ufw-status">';
 
-            return html;
-        },
+            $wrapper.append(html);
+        }
     };
     uploadFileWidget.init();
 });
