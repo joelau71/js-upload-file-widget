@@ -1,23 +1,23 @@
 /*upload-file-widget*/
-.upload-file-widget-wrapper{
-    min-height:30px;
+.upload-file-widget-wrapper {
+    min-height: 30px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.upload-file-widget-wrapper .ufw-file-label{
-    display:inline-block;
+.upload-file-widget-wrapper .ufw-file-label {
+    display: inline-block;
 }
 
-.upload-file-widget-wrapper .ufw-file-label input{
-    display:none;
+.upload-file-widget-wrapper .ufw-file-label input {
+    display: none;
 }
 
 .upload-file-widget-wrapper .ufw-content {
-    display:none;
-    position:relative;
+    display: none;
+    position: relative;
 }
 
-.upload-file-widget-wrapper .ufw-btn{
+.upload-file-widget-wrapper .ufw-btn {
     border-radius: 3px;
     border: 0;
     padding: 10px 15px;
@@ -28,32 +28,31 @@
     text-decoration: none;
     display: inline-block;
     background-color: #d8a53f;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
-.upload-file-widget-wrapper .ufw-btn:hover{
+.upload-file-widget-wrapper .ufw-btn:hover {
     background-color: #999999;
 }
 
-.upload-file-widget-wrapper .ufw-ttl{
+.upload-file-widget-wrapper .ufw-ttl {
     text-decoration: none;
-    color:#333333;
+    color: #333333;
 }
 
-.upload-file-widget-wrapper .ufw-remove-btn{
+.upload-file-widget-wrapper .ufw-remove-btn {
     margin-left: 10px;
 }
 
-.upload-file-widget-wrapper.has-data .ufw-file-label{
-    display:none;
+.upload-file-widget-wrapper.has-data .ufw-file-label {
+    display: none;
 }
 
 .upload-file-widget-wrapper.has-data .ufw-content {
-    display:flex;
+    display: flex;
     align-items: center;
-
 }
 
-.upload-file-widget-wrapper.has-data .ufw-content .right{
-    margin-left:auto;
+.upload-file-widget-wrapper.has-data .ufw-content .right {
+    margin-left: auto;
 }
