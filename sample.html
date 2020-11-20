@@ -18,12 +18,13 @@
         name="upload[]"
         class="upload-file-widget"
         data-ufw-max-width="300"
-        data-ufw-path="sample.pdf"
-        data-ufw-remove="false"
+        data-ufw-download="true"
+        data-ufw-path="girl.jpg"
     >
-    <!-- data-ufw-remove default true -->
-    <!-- data-ufw-download="download.php?id=1"-->
-    <!-- data-ufw-download for php download file -->
+    <!-- data-ufw-remove="true" default false -->
+    <!-- data-ufw-download="true" default false -->
+    <!-- data-ufw-custom-title="true" default false show PREVIEW -->
+    <!-- data-ufw-group="your group name" add class to wrapper div no default -->
     <div id="area">
 
     </div>
@@ -32,7 +33,7 @@
     <script>
         $(function(){
             $("#add").on("click", function(){
-                $('#area').append('<input type="file" name="upload[]" class="upload-file-widget">');
+                $('#area').append('<input type="file" name="upload[]" class="upload-file-widget" data-ufw-group="group-1">');
                 uploadFileWidget.update();
             });
         });
